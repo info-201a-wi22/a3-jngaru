@@ -1,0 +1,83 @@
+---
+title: "Is there a difference in incarceration rates in different regions, and if there is what could be the root cause if it exists?"
+output: html_document
+---
+
+
+
+
+
+## Summarized Data
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE, message = FALSE, warning = FALSE}
+source("summary.R", local = knitr::knit_global())
+year <- full_totals %>% pull(year)
+total_pop <- full_totals %>% pull(total_jail_pop)
+black_pop <- full_totals %>% pull(black_jail_pop)
+latinx_pop <- full_totals %>% pull(latinx_jail_pop)
+native_pop <- full_totals %>% pull(native_jail_pop)
+white_pop <- full_totals %>% pull(white_jail_pop)
+percent_black <- state_shape %>% pull(percent_black)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+
+## Introduction
+I wanted to see if there is a correlation in any manner that ties in with regions or race.
+
+
+
+### The Dataset
+
+Who collected the data?
+- The BJS. This includes the COJ and ASJ.
+
+How was the data collected or generated?  
+- ASJ collects data through surveys in 950 local jails. COJ collects data through census about 3200 local jails.
+
+Why was the data collected?  
+- These data were collected to estimate characteristics about inmates nationwide.
+
+How many observations (rows) are in your data?
+- 153811 rows
+
+How many features (columns) are in the data?
+- 121 columns
+
+What, if any, ethical questions or questions of power do you need to consider when working with this data?
+- I don't have any specific questions that come to mind besides: how did the take this census, and what is the margin for error? And: Were the innmates allowed to opt out of being counted if they want to?
+
+What are possible limitations or problems with this data?   (at least 200 words)
+- No matter what survey or census we take, we will never be able to represent the entire prison or jail or incarceration population. We don't know about factors like inmates being unwilling to be counted, or answering honestly about questions. This could result in inaccurate counting, which could result in inaccurate data collected through these means. Some other reasons the data could be inaccurate is that maybe some inmates are missed because of things like protective custody or solitary confinement. And because of the freedom to respond however they like, some inmates can be dishonest about themselves. We don't know for certain, therefore, if the data is accurate in regard to race, gender, or age, either. Some of this could be verified from the prison logs or manifest, yes, but the overall risk of misinformation as a result of the census is highly likely. A census in this respect is probably inaccurate, therefore, simply due to the lack of error margins, we have no clue what could be right, and what could be completely false. Finally there's the ethical side, where we can't force people to be a part of this study, we can't make anyone be a part of the count, and we can't ethically assume someone's gender, ethnicity, age, or the like. This means that the data we read needs to be taken with a grain of salt, since there's no way of getting 100% accuracy.
+
+
+### Trends Over Time Chart
+
+```{r, echo=FALSE, message = FALSE, warning = FALSE}
+pop_over_time_plot
+```
+
+The chart above shows the total jail population by year 1970 to 2018. From this we can see how different populations increase over time. However we must also take into the account the ratio of the population of america. We know that the black population is lower than the white population in america, so the black jail population being higher than the white shows a trend that black incarceration rate is much higher than that of white.
+
+### Variable Comparison Chart
+
+```{r, echo=FALSE, message = FALSE, warning = FALSE}
+black_v_white_pop_plot
+```
+
+Going off of the above conclusion, I thought we should compare the overall population of white and black jail populations in the data. This shows how the black population increases to a much higher amount than white, which is odd in regard to the black total population being much smaller than the overall white populaiton from the census. 
+
+### Map
+
+```{r, echo=FALSE, message = FALSE, warning = FALSE}
+state_plot
+```
+
+Finally we have the Mapping of the percent of black jail pop compared to total jail pop. This allows us to see how the ratio in comparison is much higher in many areas. This is important because it reveals the injustice of incarceration focusing on specific races over others, whether conciously or unconciously, systemically or intentionally. This is an important thing to be aware of. 
+
